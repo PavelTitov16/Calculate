@@ -28,6 +28,7 @@ let totalYear;
 for (input of inputs) {
     input.addEventListener('input', () => {
         countAvaliableMoney();
+        calculationPrecents();
     })
 }
 
@@ -39,4 +40,23 @@ const countAvaliableMoney = () => {
 
     totalMonth = totalPerMonth - totalCosts;
     totalMonthInput.value = totalMonth;
+}
+
+moneyBox.addEventListener('input', element => {
+    const totalPrecent = document.getElementById('total-precents');
+    totalPrecents = element.target.value;
+    totalPrecent.innerHTML = totalPrecents;
+    calculationPrecents();
+})
+
+const calculationPrecents = () => {
+    accumulation = ((totalMonth * totalPrecents) / 100).toFixed();
+    accumulationInput.value = accumulation;
+
+    spend.value = totalMonth - accumulation;
+    totalDay = (spend.value / 30).toFixed();
+    totalDayInput.value = totalDay;
+
+    totalYear = accumulation * 12;
+    totalYearInput.value = totalYear;
 }
